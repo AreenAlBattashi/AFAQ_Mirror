@@ -32,3 +32,11 @@
 .gesture-hint b,.gesture-hint span{display:block}
 .gesture-hint b{font-size:11px}
 .gesture-hint span{font-size:9px;color:#748198;margin-top:2px}
+
+.booth-key-shade{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:#07152fd9;backdrop-filter:blur(10px);font-family:Manrope,sans-serif}
+.booth-key-card{width:min(440px,calc(100vw - 40px));display:flex;flex-direction:column;gap:14px;padding:30px;background:#fff;border:1px solid #dce3ec;border-radius:22px;box-shadow:0 30px 80px #07152f80}
+.booth-key-card strong{font-size:26px;color:#102249}
+.booth-key-card span{font-size:13px;line-height:1.5;color:#6c7890}
+.booth-key-card input{width:100%;border:1px solid #cbd4e1;border-radius:12px;padding:13px 15px;font:600 15px Manrope,sans-serif;outline:none}
+.booth-key-card input:focus{border-color:#255ca9;box-shadow:0 0 0 4px #255ca91c}
+.booth-key-card button{border:0;border-radius:999px;padding:13px 18px;background:#ff6b19;color:#fff;font-weight:800;cursor:pointer}
