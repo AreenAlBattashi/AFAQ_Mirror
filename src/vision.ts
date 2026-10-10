@@ -28,7 +28,7 @@ export function inspectFrame(video: HTMLVideoElement, vision: Vision, time: numb
     return { p, center, scale: shoulder, score: (shoulder * 2 + torso * .35) * centrality * continuity };
   }).filter(v => (v.p[11].visibility ?? 0) > .38 && (v.p[12].visibility ?? 0) > .38 && v.scale > .07).sort((a, b) => b.score - a.score);
   const target = ranked[0];
-  if (!target) return { present: false, raised: false, bothHands: false, thumbsUp: false, crowded: poses.length > 1 };
+  if (!target) return { present: false, raised: false, bothHands: false, thumbsUp: false, handPresent: false, fingerCount: null, crowded: poses.length > 1 };
   lockedCenter = lockedCenter * .8 + target.center * .2;
   const p = target.p, scale = target.scale;
   const visible = (i: number) => (p[i].visibility ?? 0) > .28;
@@ -41,7 +41,16 @@ export function inspectFrame(video: HTMLVideoElement, vision: Vision, time: numb
     (visible(w) && visible(e) && p[w].y < p[s].y + .01 && p[e].y < p[s].y + .13) ||
     visitorHands.some(h => Math.abs(h[0].x - p[s].x) < scale * 1.35 && h[0].y < p[s].y + .01);
   const leftUp = armUp(15, 11, 13), rightUp = armUp(16, 12, 14);
-  return { present: true, raised: leftUp || rightUp, bothHands: leftUp && rightUp, thumbsUp: visitorHands.some(isThumbsUp), crowded: ranked.length > 1 };
+  const gestureHand = visitorHands.sort((a, b) => distance(b[0], b[9]) - distance(a[0], a[9]))[0];
+  return { present: true, raised: leftUp || rightUp, bothHands: leftUp && rightUp, thumbsUp: visitorHands.some(isThumbsUp), handPresent: Boolean(gestureHand), fingerCount: gestureHand ? countRaisedFingers(gestureHand) : null, crowded: ranked.length > 1 };
+}
+
+// Ignore the thumb so the existing thumbs-up photo gesture cannot mean Day 1.
+function countRaisedFingers(h: Point[]) {
+  const palm = distance(h[0], h[9]);
+  if (palm < .018) return null;
+  return [[8, 6], [12, 10], [16, 14], [20, 18]]
+    .filter(([tip, pip]) => distance(h[tip], h[0]) > distance(h[pip], h[0]) + palm * .16).length;
 }
 
 function isThumbsUp(h: Point[]) {

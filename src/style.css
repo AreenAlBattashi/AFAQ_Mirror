@@ -4,3 +4,31 @@
 :root{}
 .agenda-overlay:before{content:'AGENDA';font-family:Manrope,sans-serif;letter-spacing:.08em}.agenda-overlay h2{font-size:clamp(34px,4vw,64px);margin:14px 0 16px}.day-tabs{display:flex;gap:10px;position:relative;z-index:1}.day-tabs button{min-width:118px;border:1px solid #d8dfe9;background:#fff;color:#53627a;border-radius:14px;padding:10px 15px;text-align:left;cursor:pointer;transition:.2s}.day-tabs button small,.day-tabs button b{display:block}.day-tabs button small{font-size:9px;letter-spacing:1.5px;font-weight:800}.day-tabs button b{font-size:13px;margin-top:3px}.day-tabs button.active{background:#163765;color:#fff;border-color:#163765;box-shadow:0 8px 20px #16376530;transform:translateY(-2px)}.agenda-card{position:relative;margin-top:16px;max-width:980px;min-height:155px;border-radius:20px;background:linear-gradient(115deg,#e96822,#f1853e);color:#fff;padding:20px 25px;display:flex;align-items:center;gap:26px;overflow:hidden;box-shadow:0 15px 35px #c4521d36}.agenda-number{font-size:80px;font-weight:800;line-height:1;opacity:.25}.agenda-card section{position:relative;z-index:1;flex:1}.agenda-card p{font:800 25px Tajawal;margin:0}.agenda-card h3{font-size:22px;margin:2px 0 12px}.agenda-meta{display:flex;gap:22px;flex-wrap:wrap}.agenda-meta span{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700}.agenda-meta svg{width:16px}.agenda-card strong{display:block;margin-top:10px;font-size:13px;font-weight:600;color:#fff8f2}.qr-panel.local{border:1px solid #ffad4066}.qr-panel.public{border:1px solid #42d39266}.qr-panel.public span{color:#9aebc5}.camera-frame video{filter:saturate(1.04) contrast(1.02)}
 @media(max-height:800px){.agenda-overlay h2{font-size:38px;margin:8px 0 10px}.day-tabs button{padding:7px 11px}.agenda-card{min-height:125px;padding:12px 20px}.agenda-number{font-size:60px}.agenda-card p{font-size:21px}.agenda-card h3{font-size:18px;margin-bottom:7px}}
+
+/* Keep the live mirror dominant while still showing every sponsor. */
+.app{padding:7px 14px 6px}
+.topbar{height:62px;padding:2px 0 5px;gap:13px}
+.organizer-label{font-size:7px;letter-spacing:1.4px}
+.organizer-row{height:52px;gap:14px}
+.organizer-row img{width:112px;height:48px}
+.organizer-row img:nth-child(2){width:120px}
+.organizer-row img:nth-child(3){width:72px}
+.date-pill{padding:9px 16px;gap:9px;font-size:14px;letter-spacing:1.5px;box-shadow:0 5px 14px #52627c20}
+.date-pill i{width:10px;height:10px;box-shadow:0 0 0 5px #ff6b1924}
+.icon-button{width:38px;height:38px}
+.main{padding:5px 0}
+.sponsor-strip{height:42px;padding:4px 9px;gap:8px;border-radius:9px;background:#ffffffb8;box-shadow:0 3px 12px #253b5b10}
+.sponsor-strip>span{width:42px;font-size:6px;line-height:1.25;letter-spacing:1.1px;color:#7c899d99}
+.sponsor-strip>div{height:34px;display:grid;grid-template-columns:repeat(18,minmax(24px,1fr));align-items:center;justify-items:center;gap:3px;overflow:visible}
+.sponsor-strip img{display:block;width:100%;max-width:60px;height:29px;object-fit:contain;mix-blend-mode:multiply;opacity:.48;filter:saturate(.7)}
+.sponsor-strip>b{font-size:7px;color:#18355f80}
+@media(max-height:800px){.topbar{height:56px}.organizer-row{height:47px}.organizer-row img{height:43px}.sponsor-strip{height:38px}.sponsor-strip>div{height:30px}.sponsor-strip img{height:26px}}
+
+/* Keep the live camera image clear; result mode retains its own readability layer. */
+.stage-idle .camera-frame:after,.stage-welcome .camera-frame:after,.stage-mirror .camera-frame:after{background:transparent}
+
+.gesture-hint{position:absolute;right:76px;top:24px;display:grid;grid-template-columns:30px auto;column-gap:9px;align-items:center;color:#17355f;background:#fff;border:1px solid #dbe2eb;border-radius:13px;padding:9px 13px;box-shadow:0 7px 18px #17355f12}
+.gesture-hint svg{grid-row:1/3;width:25px;color:#ff6b19}
+.gesture-hint b,.gesture-hint span{display:block}
+.gesture-hint b{font-size:11px}
+.gesture-hint span{font-size:9px;color:#748198;margin-top:2px}
